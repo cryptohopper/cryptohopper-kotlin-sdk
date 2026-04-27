@@ -1,6 +1,23 @@
 package com.cryptohopper
 
+import com.cryptohopper.resources.AIResource
+import com.cryptohopper.resources.AppResource
+import com.cryptohopper.resources.ArbitrageResource
+import com.cryptohopper.resources.BacktestResource
+import com.cryptohopper.resources.ChartResource
+import com.cryptohopper.resources.ExchangeResource
+import com.cryptohopper.resources.HoppersResource
+import com.cryptohopper.resources.MarketResource
+import com.cryptohopper.resources.MarketMakerResource
+import com.cryptohopper.resources.PlatformResource
+import com.cryptohopper.resources.SignalsResource
+import com.cryptohopper.resources.SocialResource
+import com.cryptohopper.resources.StrategyResource
+import com.cryptohopper.resources.SubscriptionResource
+import com.cryptohopper.resources.TemplateResource
+import com.cryptohopper.resources.TournamentsResource
 import com.cryptohopper.resources.UserResource
+import com.cryptohopper.resources.WebhooksResource
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
@@ -19,17 +36,37 @@ import java.util.concurrent.TimeUnit
  *
  * runBlocking {
  *     val me = ch.user.get()
- *     println(me)
+ *     val ticker = ch.exchange.ticker(exchange = "binance", market = "BTC/USDT")
+ *     println("$me $ticker")
  * }
  * ```
+ *
+ * Covers all 18 public API domains (`user`, `hoppers`, `exchange`, `strategy`,
+ * `backtest`, `market`, `signals`, `arbitrage`, `marketmaker`, `template`,
+ * `ai`, `platform`, `chart`, `subscription`, `social`, `tournaments`,
+ * `webhooks`, `app`) — same surface as every sibling SDK in the suite.
  */
 public class Client private constructor(
     public val transport: Transport,
 ) {
     public val user: UserResource = UserResource(transport)
-
-    // Resources for the remaining 17 domains land in subsequent releases.
-    // See https://github.com/cryptohopper/cryptohopper-kotlin-sdk for status.
+    public val hoppers: HoppersResource = HoppersResource(transport)
+    public val exchange: ExchangeResource = ExchangeResource(transport)
+    public val strategy: StrategyResource = StrategyResource(transport)
+    public val backtest: BacktestResource = BacktestResource(transport)
+    public val market: MarketResource = MarketResource(transport)
+    public val signals: SignalsResource = SignalsResource(transport)
+    public val arbitrage: ArbitrageResource = ArbitrageResource(transport)
+    public val marketmaker: MarketMakerResource = MarketMakerResource(transport)
+    public val template: TemplateResource = TemplateResource(transport)
+    public val ai: AIResource = AIResource(transport)
+    public val platform: PlatformResource = PlatformResource(transport)
+    public val chart: ChartResource = ChartResource(transport)
+    public val subscription: SubscriptionResource = SubscriptionResource(transport)
+    public val social: SocialResource = SocialResource(transport)
+    public val tournaments: TournamentsResource = TournamentsResource(transport)
+    public val webhooks: WebhooksResource = WebhooksResource(transport)
+    public val app: AppResource = AppResource(transport)
 
     /**
      * Builder for [Client].

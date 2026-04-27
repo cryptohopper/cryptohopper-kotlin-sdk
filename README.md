@@ -7,7 +7,7 @@
 
 Official Kotlin SDK for the [Cryptohopper](https://www.cryptohopper.com) API. Cross-platform JVM — works on Android *and* server-side Kotlin/Java.
 
-> **Status: 0.1.0-alpha.1 — scaffold release.** The transport layer, error type, and `client.user.get()` are in. The remaining 17 API domains land in subsequent alphas.
+> **Status: 0.1.0-alpha.1 — full coverage of all 18 public API domains** (`user`, `hoppers`, `exchange`, `strategy`, `backtest`, `market`, `signals`, `arbitrage`, `marketmaker`, `template`, `ai`, `platform`, `chart`, `subscription`, `social`, `tournaments`, `webhooks`, `app`). Same surface as the other official SDKs.
 
 ## Why this SDK
 
