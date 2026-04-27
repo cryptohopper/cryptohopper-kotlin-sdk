@@ -1,0 +1,10 @@
+* text=auto eol=lf
+
+# Binary — never touched by Git's text/EOL machinery.
+*.jar binary
+
+# Shell scripts must keep LF, even when checked out on Windows.
+gradlew text eol=lf
+
+# .bat files want CRLF.
+*.bat text eol=crlf
