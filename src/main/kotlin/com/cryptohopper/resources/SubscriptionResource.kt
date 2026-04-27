@@ -10,8 +10,8 @@ import kotlinx.serialization.json.JsonObject
 public class SubscriptionResource internal constructor(
     private val transport: Transport,
 ) {
-    public suspend fun hopper(extra: Map<String, String>? = null): JsonElement? =
-        transport.request("GET", "/subscription/hopper", query = extra)
+    public suspend fun hopper(hopperId: Any): JsonElement? =
+        transport.request("GET", "/subscription/hopper", query = mapOf("hopper_id" to hopperId.toString()))
     public suspend fun get(): JsonElement? = transport.request("GET", "/subscription/get")
     public suspend fun plans(): JsonElement? = transport.request("GET", "/subscription/plans")
     public suspend fun remap(input: JsonObject): JsonElement? =

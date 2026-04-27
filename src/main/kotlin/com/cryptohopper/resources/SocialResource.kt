@@ -25,8 +25,10 @@ public class SocialResource internal constructor(
         transport.request("GET", "/social/search", query = mapOf("query" to query))
     public suspend fun getNotifications(): JsonElement? = transport.request("GET", "/social/getnotifications")
     public suspend fun getConversationList(): JsonElement? = transport.request("GET", "/social/getconversationlist")
-    public suspend fun getConversation(extra: Map<String, String>? = null): JsonElement? =
-        transport.request("GET", "/social/loadconversation", query = extra)
+    public suspend fun getConversation(conversationId: Any): JsonElement? = transport.request(
+        "GET", "/social/loadconversation",
+        query = mapOf("conversation_id" to conversationId.toString()),
+    )
     public suspend fun sendMessage(input: JsonObject): JsonElement? =
         transport.request("POST", "/social/sendmessage", body = input)
     public suspend fun deleteMessage(input: JsonObject): JsonElement? =
@@ -41,20 +43,30 @@ public class SocialResource internal constructor(
         transport.request("POST", "/social/pinpost", body = input)
     public suspend fun getComment(commentId: Any): JsonElement? =
         transport.request("GET", "/social/getcomment", query = mapOf("comment_id" to commentId.toString()))
-    public suspend fun getComments(extra: Map<String, String>? = null): JsonElement? =
-        transport.request("GET", "/social/getcomments", query = extra)
+    public suspend fun getComments(postId: Any): JsonElement? = transport.request(
+        "GET", "/social/getcomments",
+        query = mapOf("post_id" to postId.toString()),
+    )
     public suspend fun deleteComment(input: JsonObject): JsonElement? =
         transport.request("POST", "/social/deletecomment", body = input)
-    public suspend fun getMedia(extra: Map<String, String>? = null): JsonElement? =
-        transport.request("GET", "/social/getmedia", query = extra)
+    public suspend fun getMedia(mediaId: Any): JsonElement? = transport.request(
+        "GET", "/social/getmedia",
+        query = mapOf("media_id" to mediaId.toString()),
+    )
     public suspend fun follow(input: JsonObject): JsonElement? =
         transport.request("POST", "/social/follow", body = input)
-    public suspend fun getFollowers(extra: Map<String, String>? = null): JsonElement? =
-        transport.request("GET", "/social/followers", query = extra)
-    public suspend fun getFollowing(extra: Map<String, String>? = null): JsonElement? =
-        transport.request("GET", "/social/following", query = extra)
-    public suspend fun getFollowingProfiles(extra: Map<String, String>? = null): JsonElement? =
-        transport.request("GET", "/social/followingprofiles", query = extra)
+    public suspend fun getFollowers(aliasOrId: Any): JsonElement? = transport.request(
+        "GET", "/social/followers",
+        query = mapOf("alias" to aliasOrId.toString()),
+    )
+    public suspend fun getFollowing(aliasOrId: Any): JsonElement? = transport.request(
+        "GET", "/social/following",
+        query = mapOf("alias" to aliasOrId.toString()),
+    )
+    public suspend fun getFollowingProfiles(aliasOrId: Any): JsonElement? = transport.request(
+        "GET", "/social/followingprofiles",
+        query = mapOf("alias" to aliasOrId.toString()),
+    )
     public suspend fun like(input: JsonObject): JsonElement? =
         transport.request("POST", "/social/like", body = input)
     public suspend fun repost(input: JsonObject): JsonElement? =
