@@ -27,7 +27,7 @@ dependencies {
     // OkHttp — battle-tested HTTP client with built-in connection pooling and
     // a small footprint. Same library the legacy Android SDK uses, so users
     // migrating between SDKs see no transport-level surprises.
-    api("com.squareup.okhttp3:okhttp:4.12.0")
+    api("com.squareup.okhttp3:okhttp:5.3.2")
 
     // kotlinx-serialization for typed JSON without reflection at runtime.
     api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
@@ -35,7 +35,7 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:5.3.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
 }
 
