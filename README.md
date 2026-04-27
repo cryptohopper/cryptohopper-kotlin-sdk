@@ -15,7 +15,7 @@ The legacy [`cryptohopper-android-sdk`](https://github.com/cryptohopper/cryptoho
 
 - **Cross-JVM target** — works on Android *and* server-side Kotlin / Java interop.
 - **Correct `access-token` header from day one** — the legacy SDK sends `Authorization: Bearer` for v1 calls, which the API gateway rejects (see [the live API docs](https://www.cryptohopper.com/api-documentation/how-the-api-works)).
-- **Modern stack** — Kotlin 2.0, coroutines, kotlinx-serialization, OkHttp.
+- **Modern stack** — Kotlin 2.3, coroutines, kotlinx-serialization, OkHttp 5.
 - **Same surface as every other official SDK** in the suite — Node, Python, Go, Ruby, Rust, PHP, Dart, Swift. Same error taxonomy. Same retry contract. Same idioms ported per language.
 
 If you're building an Android-only app today, the legacy SDK still works once the open issues are addressed. If you're writing server-side Kotlin or want a fresh foundation, use this one.
@@ -57,7 +57,7 @@ fun main() = runBlocking {
 }
 ```
 
-Requires Kotlin 2.0+ and JVM 17+.
+Requires Kotlin 2.3+ and JVM 17+.
 
 ## Authentication
 

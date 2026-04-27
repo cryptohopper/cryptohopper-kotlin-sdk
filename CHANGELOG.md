@@ -48,7 +48,7 @@ All 18 public API domains:
 ### Why a Kotlin SDK
 - The legacy [`cryptohopper-android-sdk`](https://github.com/cryptohopper/cryptohopper-android-sdk) targets Android only via JitPack and has known auth-flow bugs ([#99](https://github.com/cryptohopper/cryptohopper-android-sdk/issues/99)).
 - This SDK is JVM-target — works on Android *and* server-side Kotlin / Java interop. Sends the correct `access-token` header from day one.
-- Modern Kotlin stack: 2.0, coroutines, kotlinx-serialization, OkHttp 4.
+- Modern Kotlin stack: Kotlin 2.3, coroutines 1.10, kotlinx-serialization 1.11, OkHttp 5.
 
 ### Out of scope (post-alpha)
 - Maven Central publishing setup. Currently builds locally via `./gradlew build`; the release workflow + signing key + Sonatype-OSSRH credentials need configuring before the first publish.
