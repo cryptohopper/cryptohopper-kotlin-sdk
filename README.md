@@ -1,7 +1,8 @@
 # cryptohopper-kotlin-sdk
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.cryptohopper/cryptohopper?logo=apachemaven&logoColor=white&include_prereleases)](https://central.sonatype.com/artifact/com.cryptohopper/cryptohopper)
 [![CI](https://github.com/cryptohopper/cryptohopper-kotlin-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/cryptohopper/cryptohopper-kotlin-sdk/actions/workflows/ci.yml)
-[![Kotlin](https://img.shields.io/badge/kotlin-2.0%2B-blue?logo=kotlin)](build.gradle.kts)
+[![Kotlin](https://img.shields.io/badge/kotlin-2.3%2B-blue?logo=kotlin)](build.gradle.kts)
 [![JVM](https://img.shields.io/badge/jvm-17%2B-blue?logo=openjdk)](build.gradle.kts)
 [![License: MIT](https://img.shields.io/github/license/cryptohopper/cryptohopper-kotlin-sdk?color=blue)](LICENSE)
 
