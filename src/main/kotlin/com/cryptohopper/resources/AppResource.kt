@@ -13,9 +13,11 @@ import kotlinx.serialization.json.JsonObject
 public class AppResource internal constructor(
     private val transport: Transport,
 ) {
+    /** Validate an App Store / Play Store receipt. */
     public suspend fun receipt(input: JsonObject): JsonElement? =
         transport.request("POST", "/app/receipt", body = input)
 
+    /** Record an in-app purchase. */
     public suspend fun inAppPurchase(input: JsonObject): JsonElement? =
         transport.request("POST", "/app/in_app_purchase", body = input)
 }

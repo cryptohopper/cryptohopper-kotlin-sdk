@@ -13,9 +13,14 @@ import kotlinx.serialization.json.put
 public class WebhooksResource internal constructor(
     private val transport: Transport,
 ) {
+    /**
+     * Register a new webhook. The input should include the webhook URL and
+     * the event types the app wants to subscribe to.
+     */
     public suspend fun create(input: JsonObject): JsonElement? =
         transport.request("POST", "/api/webhook_create", body = input)
 
+    /** Delete a registered webhook by id. */
     public suspend fun delete(webhookId: Any): JsonElement? = transport.request(
         "POST", "/api/webhook_delete",
         body = buildJsonObject { put("webhook_id", webhookId.toString()) },
