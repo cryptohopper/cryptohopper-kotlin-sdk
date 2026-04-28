@@ -12,15 +12,19 @@ import kotlinx.serialization.json.put
 public class HoppersResource internal constructor(
     private val transport: Transport,
 ) {
+    /** List the authenticated user's hoppers. Requires `read`. */
     public suspend fun list(exchange: String? = null): JsonElement? =
         transport.request("GET", "/hopper/list", query = exchange?.let { mapOf("exchange" to it) })
 
+    /** Fetch a single hopper. Requires `read`. */
     public suspend fun get(hopperId: Any): JsonElement? =
         transport.request("GET", "/hopper/get", query = mapOf("hopper_id" to hopperId.toString()))
 
+    /** Create a new hopper. Requires `manage`. */
     public suspend fun create(input: JsonObject): JsonElement? =
         transport.request("POST", "/hopper/create", body = input)
 
+    /** Update an existing hopper. Requires `manage`. */
     public suspend fun update(hopperId: Any, input: JsonObject): JsonElement? {
         val body = buildJsonObject {
             put("hopper_id", hopperId.toString())
@@ -29,35 +33,43 @@ public class HoppersResource internal constructor(
         return transport.request("POST", "/hopper/update", body = body)
     }
 
+    /** Delete a hopper. Requires `manage`. */
     public suspend fun delete(hopperId: Any): JsonElement? = transport.request(
         "POST", "/hopper/delete",
         body = buildJsonObject { put("hopper_id", hopperId.toString()) },
     )
 
+    /** List open positions across a hopper. Requires `read`. */
     public suspend fun positions(hopperId: Any): JsonElement? =
         transport.request("GET", "/hopper/positions", query = mapOf("hopper_id" to hopperId.toString()))
 
+    /** Fetch a single position. Requires `read`. */
     public suspend fun position(hopperId: Any, positionId: Any): JsonElement? =
         transport.request("GET", "/hopper/position", query = mapOf(
             "hopper_id" to hopperId.toString(),
             "position_id" to positionId.toString(),
         ))
 
+    /** List recent orders for a hopper. Requires `read`. */
     public suspend fun orders(hopperId: Any, extra: Map<String, String>? = null): JsonElement? {
         val q = mutableMapOf<String, String?>("hopper_id" to hopperId.toString())
         extra?.forEach { (k, v) -> q[k] = v }
         return transport.request("GET", "/hopper/orders", query = q)
     }
 
+    /** Place a market/limit buy. Requires `trade`. Subject to the `order` rate bucket. */
     public suspend fun buy(input: JsonObject): JsonElement? =
         transport.request("POST", "/hopper/buy", body = input)
 
+    /** Place a market/limit sell. Requires `trade`. Subject to the `order` rate bucket. */
     public suspend fun sell(input: JsonObject): JsonElement? =
         transport.request("POST", "/hopper/sell", body = input)
 
+    /** Get the full config for a hopper. Requires `manage`. */
     public suspend fun configGet(hopperId: Any): JsonElement? =
         transport.request("GET", "/hopper/configget", query = mapOf("hopper_id" to hopperId.toString()))
 
+    /** Update the config for a hopper. Requires `manage`. */
     public suspend fun configUpdate(hopperId: Any, config: JsonObject): JsonElement? {
         val body = buildJsonObject {
             put("hopper_id", hopperId.toString())
@@ -66,9 +78,11 @@ public class HoppersResource internal constructor(
         return transport.request("POST", "/hopper/configupdate", body = body)
     }
 
+    /** List config pools for a hopper. Requires `manage`. */
     public suspend fun configPools(hopperId: Any): JsonElement? =
         transport.request("GET", "/hopper/configpools", query = mapOf("hopper_id" to hopperId.toString()))
 
+    /** Panic-sell everything: cancel every open order and close every position. Requires `trade`. */
     public suspend fun panic(hopperId: Any): JsonElement? = transport.request(
         "POST", "/hopper/panic",
         body = buildJsonObject { put("hopper_id", hopperId.toString()) },
